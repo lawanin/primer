@@ -29,7 +29,7 @@ jobs:
 
       # renv cache makes install dependencies almost instaneous...if it works.
       # https://rstudio.github.io/renv/articles/ci.html
-      # renv::consent(), line 45, seems to make it work. See https://github.com/r-lib/actions/issues/79
+      # renv::consent(), line 63, seems to make it work. See https://github.com/r-lib/actions/issues/79
 
       - uses: actions/cache@v1
         with:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies
 
-      # line 46 is key command. Uses terminal to generate a list of files changed
+      # line 64 is key command. Uses terminal to generate a list of files changed
       # in the commit (in comparison to the master) and then uses grep to find
       # only the Rmds among the changed files.
 
