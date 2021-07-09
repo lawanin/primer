@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0
       - uses: r-lib/actions/setup-r@v1
 
-      # git cache makes install dependencies almost instaneous...if it works.
+      # renv cache makes install dependencies almost instaneous...if it works.
       # https://rstudio.github.io/renv/articles/ci.html
       # renv::consent(), line 45, seems to make it work. See https://github.com/r-lib/actions/issues/79
 
