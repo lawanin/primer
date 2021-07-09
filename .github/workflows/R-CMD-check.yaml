@@ -28,6 +28,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
 
       # git cache makes install dependencies almost instaneous...if it works.
+      # https://rstudio.github.io/renv/articles/ci.html
       # renv::consent(), line 45, seems to make it work. See https://github.com/r-lib/actions/issues/79
 
       - uses: actions/cache@v1
@@ -72,6 +73,20 @@ jobs:
       # knitr::knit2html both knit, but rmarkdown::render is allegedly more robust.
       # https://stackoverflow.com/questions/27246746/how-to-replicate-knit-html-in-a-command-line.
       # It may be worth finding out why rmarkdown::render() does not work.
+      # As of 07/09/21, I get the following warnings when I run
+      # rmarkdown::render("01-visualization.Rmd") in the console.
+        # [WARNING] This document format requires a nonempty <title> element.
+        #   Defaulting to '01-visualization.knit' as the title.
+        #   To specify a title, use 'title' in metadata or --metadata title="...".
+        # Tweaking _book/index.html
+        # Error in file(con, "r") : cannot open the connection
+        # In addition: Warning messages:
+        # 1: The label(s) wrangling not found
+        # 2: The label(s) probability not found
+        # 3: The label(s) probability not found
+        # 4: The label(s) wrangling not found
+        # 5: In file(con, "r") :
+        #   cannot open file '_book/index.html': No such file or directory
 
         run: |
           for(i in system("cat changes", intern = TRUE)) {
