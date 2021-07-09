@@ -1,6 +1,10 @@
 # Getting Started {-}
 
+<<<<<<< HEAD
 <!-- This is a test change for Github Actions. Another change -->
+=======
+<!-- This is a test change for Github Actions -->
+>>>>>>> 3377e14b26cdb4e33ee4dcded1bde55eb1b2ac76
 
 <!-- At the end of RStudio set up, have them start a new project, and show them screen shots of putting the default folder someplace like ~/Desktop/projects. Not on OneDrive. -->
 
