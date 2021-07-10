@@ -41,8 +41,8 @@ jobs:
       - name: Install dependencies
 
       # line 64 is key command. Uses terminal to generate a list of files changed
-      # in the commit (in comparison to the master) and then uses grep to find
-      # only the Rmds among the changed files.
+      # in the last commit and then uses grep to find only the Rmds among the
+      # changed files.
 
       # the two following lines are terminal commands that read through the list
       # of changed Rmds and use sed and regular expressions to isolate them. The
@@ -55,13 +55,13 @@ jobs:
       # two last system lines. Remove the last two system(...) commands. Remove the
       # packages argument in renv::restore(). Though it will work without it, it
       # is better to replace the string "cat changes" in the for() loop, with
-      # "git diff --name-only origin/master HEAD | grep Rmd". Then delete the
+      # "git log -1 --name-only | grep Rmd". Then delete the
       # system command underneath renv::consent(...).
 
         run: |
           install.packages("renv")
           renv::consent(provided = TRUE)
-          system("git diff --name-only origin/master HEAD | grep Rmd > changes")
+          system("git log -1 --name-only | grep Rmd > changes")
           system('while read line; do grep "library(" "$line"; done < changes | sed -E  "s/.*library\\(|\\).*//g" > 1')
           system('while read line; do grep -E ".*\\:\\:" "$line"; done < changes | sed -E "s/\\:\\:.*//g" | sed -E "s/.*[^A-Za-z1-9]//g" > 2')
           renv::restore(packages = system('cat 1 2 | awk "NF" | sort -u', intern = TRUE))
@@ -92,4 +92,5 @@ jobs:
           for(i in system("cat changes", intern = TRUE)) {
           knitr::knit2html(i)
           }
+
         shell: Rscript {0}
