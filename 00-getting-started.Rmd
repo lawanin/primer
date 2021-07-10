@@ -1,9 +1,6 @@
 # Getting Started {-}
 
-<!-- Sample change for new log method -->
-
 <!-- At the end of RStudio set up, have them start a new project, and show them screen shots of putting the default folder someplace like ~/Desktop/projects. Not on OneDrive. DONE -->
->>>>>>> 5a62dc98c17856c168558359acf69a0204b1be90
 
 <!-- Add more material about Happy Git with R and how to use it. Add more material from R basics. They need to know how to create and knit an Rmd file. DONE -->
 
